@@ -1,497 +1,292 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505" />
-  <meta name="description" content="Free WhatsApp Ban Checker — check any number for free, forever." />
-  <link rel="icon" type="image/jpg" href="images/orlyne-bot.jpg" />
-  <meta property="og:title" content="Free Ban Check — Orlyne Check Ban">
-  <meta property="og:description" content="Check any WhatsApp number for free, forever.">
-  <meta property="og:image" content="images/orlyne-bot.jpg">
-  <title>Free Ban Check — Orlyne Check Ban</title>
-  <style>
-  :root {
-    --background: 0 0% 1.5%;
-    --foreground: 45 13% 91%;
-    --card: 0 0% 3.3%;
-    --secondary: 0 0% 7%;
-    --muted-foreground: 40 4% 50%;
-    --destructive: 0 43% 48%;
-    --success: 103 18% 59%;
-    --border: 45 6% 16%;
-    --input: 45 6% 19%;
-    --ring: 45 13% 82%;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORLYNE CHECK BAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080808;
+            --card-bg: #121212;
+            --accent-red: #d32f2f;
+            --accent-glow: rgba(211, 47, 47, 0.4);
+            --text-main: #f5f5f5;
+            --text-sub: #a0a0a0;
+            --whatsapp-green: #25D366;
+        }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; border-color: hsl(var(--border)); }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  html {
-    color-scheme: dark;
-    min-width: 320px;
-    background: hsl(var(--background));
-  }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
 
-  body {
-    min-width: 320px;
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: hsl(var(--foreground));
-    font-family: Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    background:
-      radial-gradient(ellipse 80% 50% at 52% -18%, rgba(255,255,255,0.06), transparent 64%),
-      radial-gradient(ellipse 45% 36% at 100% 38%, rgba(255,255,255,0.022), transparent 72%),
-      linear-gradient(180deg, #050505 0%, #020202 53%, #050505 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
+        header {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+        }
 
-  body::before {
-    content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .34;
-    background:
-      repeating-linear-gradient(90deg, transparent 0, transparent calc(12.5vw - 1px), rgba(255,255,255,0.022) calc(12.5vw - 1px), rgba(255,255,255,0.022) 12.5vw),
-      repeating-linear-gradient(0deg, transparent 0, transparent 120px, rgba(255,255,255,0.011) 120px, rgba(255,255,255,0.011) 121px);
-  }
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #fff;
+        }
 
-  body::after {
-    content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .048;
-    mix-blend-mode: soft-light;
-    background: repeating-radial-gradient(circle at 19% 31%,
-      rgba(255,255,255,0.92) 0, rgba(255,255,255,0.92) .4px, transparent .7px, transparent 4px);
-  }
+        .brand-sub {
+            font-size: 0.7rem;
+            color: var(--accent-red);
+            letter-spacing: 1px;
+        }
 
-  h1, h2, h3 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 400;
-    letter-spacing: -.035em;
-  }
+        main {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+        }
 
-  ::selection { color: #050505; background: #e9e7df; }
-  .topbar {
-    position: sticky; top: 0; z-index: 40;
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    min-height: 4.1rem; padding: 0 clamp(1rem, 4vw, 2.5rem);
-    border-bottom: 1px solid hsl(var(--border));
-    background: rgba(3,3,3,0.94); backdrop-filter: blur(18px);
-  }
-  .brand { display: flex; align-items: center; gap: .78rem; color: inherit; text-decoration: none; }
+        .profile-container {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-red);
+            box-shadow: 0 0 20px var(--accent-glow);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
 
-  .mark {
-    display: block; flex: 0 0 auto; width: 2.6rem; height: 2.6rem;
-    border-radius: 50%;
-    overflow: hidden; background: transparent;
-    object-fit: cover; object-position: center; transform-origin: center;
-    user-select: none; -webkit-user-drag: none;
-    filter: drop-shadow(0 0 12px rgba(255,255,255,.045));
-  }
-  .mark-lg {
-    width: 9rem; height: 9rem; margin-bottom: 1.6rem;
-    filter: drop-shadow(0 0 32px rgba(255,255,255,.07));
-    animation: tsm-emblem-float 7s ease-in-out infinite;
-  }
-  @keyframes tsm-emblem-float {
-    0%, 100% { transform: translateY(0) scale(1); opacity: .94; }
-    50% { transform: translateY(-2px) scale(1.012); opacity: 1; }
-  }
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-  .brand-name {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: .88rem; font-style: italic; text-transform: uppercase; letter-spacing: -.015em;
-  }
-  .brand-sub {
-    margin-top: .18rem;
-    font-family: "Courier New", Courier, monospace;
-    font-size: .5rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
-  }
+        .motto {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .wa-btn-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
 
-  .link {
-    display: inline-flex; align-items: center; gap: .5rem;
-    padding: .55rem .8rem; border: 1px solid transparent;
-    color: hsl(var(--muted-foreground)); text-decoration: none;
-    font-family: "Courier New", Courier, monospace;
-    font-size: .58rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
-    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
-  }
-  .link:hover {
-    color: hsl(var(--foreground));
-    border-color: rgba(255,255,255,.07);
-    background: rgba(255,255,255,.025);
-  }
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            border: 1px solid var(--whatsapp-green);
+            color: var(--whatsapp-green);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
 
-  .page { position: relative; max-width: 34rem; margin: 0 auto; padding: 3rem 1rem 5rem; }
-  .page::before {
-    content: ""; position: fixed; top: 50%; left: 50%; z-index: -1;
-    width: min(92vw, 920px); aspect-ratio: 1;
-    border: 1px solid rgba(255,255,255,.052); border-radius: 50%;
-    transform: translate(-50%, -50%); pointer-events: none;
-    box-shadow: 0 0 0 74px rgba(255,255,255,.009), 0 0 0 148px rgba(255,255,255,.005);
-  }
+        .wa-btn:hover {
+            background-color: var(--whatsapp-green);
+            color: #000;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+        }
 
-  .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 2.25rem; }
-  .hero h1 {
-    max-width: 22rem;
-    font-size: clamp(2.35rem, 7vw, 3.6rem); font-style: italic; line-height: .92;
-    letter-spacing: -.065em; text-transform: uppercase;
-  }
-  .hero p {
-    max-width: 24rem; margin-top: .85rem;
-    font-family: Georgia, "Times New Roman", serif; font-size: .9rem; line-height: 1.65;
-    color: hsl(var(--muted-foreground));
-  }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 25px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
 
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1.1rem;
-    padding: .3rem .6rem; border: 1px solid hsl(var(--border));
-    font-family: "Courier New", Courier, monospace;
-    font-size: .52rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
-  }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-  .card {
-    position: relative; margin-bottom: 1rem; padding: 1.6rem;
-    border: 1px solid hsl(var(--border));
-    background:
-      linear-gradient(135deg, rgba(255,255,255,.016), transparent 38%),
-      hsl(var(--card) / .91);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.014), 0 24px 80px rgba(0,0,0,.15);
-    transition: border-color 220ms ease;
-  }
-  .card:hover { border-color: hsl(var(--foreground) / .2); }
-  .card::before, .card::after { content: ""; position: absolute; z-index: 3; width: 16px; height: 16px; pointer-events: none; }
-  .card::before { top: -1px; left: -1px; border-top: 1px solid hsl(var(--foreground) / .48); border-left: 1px solid hsl(var(--foreground) / .48); }
-  .card::after { right: -1px; bottom: -1px; border-right: 1px solid hsl(var(--foreground) / .25); border-bottom: 1px solid hsl(var(--foreground) / .25); }
+        label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
 
-  .card-title {
-    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.35rem;
-    font-family: "Courier New", Courier, monospace;
-    font-size: .53rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
-  }
-  .card-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, hsl(var(--muted-foreground)), transparent); }
+        input[type="tel"] {
+            width: 100%;
+            padding: 14px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
 
-  .label {
-    display: block; margin-bottom: .55rem;
-    font-family: "Courier New", Courier, monospace;
-    font-size: .58rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
-    color: hsl(var(--foreground) / .9);
-  }
+        input[type="tel"]:focus {
+            border-color: var(--accent-red);
+        }
 
-  .phone-input {
-    display: block; width: 100%; min-height: 2.55rem; padding: .5rem .75rem;
-    border: 1px solid hsl(var(--input)); border-radius: 0;
-    background: hsl(var(--secondary) / .34);
-    color: hsl(var(--foreground)); font-family: inherit; font-size: .875rem;
-    box-shadow: inset 0 -1px 0 rgba(255,255,255,.023);
-    transition: border-color 180ms ease;
-  }
-  .phone-input::placeholder { color: hsl(var(--muted-foreground)); }
-  .phone-input:focus {
-    border-color: hsl(var(--foreground) / .54);
-    outline: none;
-    box-shadow: 0 0 0 1px hsl(var(--ring) / .5);
-  }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--accent-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
 
-  .turnstile-wrap { display: flex; justify-content: center; margin: 1rem 0; }
+        .submit-btn:hover {
+            background-color: #b71c1c;
+        }
 
-  .btn {
-    position: relative; overflow: hidden;
-    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    width: 100%; min-height: 2.55rem; padding: .5rem 1rem;
-    border: 1px solid hsl(var(--foreground)); border-radius: 0;
-    background: hsl(var(--foreground)); color: #050505;
-    font-family: "Courier New", Courier, monospace;
-    font-size: .62rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
-    cursor: pointer; transition: background-color 200ms ease, color 200ms ease, opacity 200ms ease;
-  }
-  .btn::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,.12), transparent);
-    transform: translateX(-120%); transition: transform 420ms ease;
-  }
-  .btn:hover:not(:disabled) { background: transparent; color: hsl(var(--foreground)); }
-  .btn:hover:not(:disabled)::after { transform: translateX(120%); }
-  .btn:disabled { opacity: .5; cursor: default; }
-  .btn-mt { margin-top: 1.2rem; }
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
 
-  .spin {
-    display: inline-block; width: 14px; height: 14px;
-    border: 1px solid currentColor; border-top-color: transparent; border-radius: 50%;
-    animation: rot .7s linear infinite;
-  }
-  @keyframes rot { to { transform: rotate(360deg); } }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none;
+        }
 
-  .status-banner {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 1rem; margin-bottom: 1.15rem;
-    border: 1px solid hsl(var(--border)); background: rgba(255,255,255,.014);
-  }
-  .status-banner.banned { border-color: hsl(var(--destructive) / .38); background: hsl(var(--destructive) / .07); }
-  .status-banner.active { border-color: hsl(var(--success) / .32); background: hsl(var(--success) / .06); }
+        .status-clean {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+        }
 
-  .s-icon { flex: 0 0 auto; display: flex; }
-  .s-icon svg { width: 1.5rem; height: 1.5rem; }
-  .s-icon.banned { color: hsl(var(--destructive)); }
-  .s-icon.active { color: hsl(var(--success)); }
+        .status-banned {
+            background-color: rgba(211, 47, 47, 0.1);
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+        }
 
-  .s-title { font-family: "Courier New", Courier, monospace; font-size: .82rem; font-weight: 700; letter-spacing: .08em; }
-  .s-sub { margin-top: .25rem; font-family: Georgia, "Times New Roman", serif; font-size: .78rem; color: hsl(var(--muted-foreground)); }
+        footer {
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            letter-spacing: 1px;
+            text-align: center;
+        }
 
-  .rows { display: flex; flex-direction: column; }
-  .row {
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    padding: .7rem 0; border-bottom: 1px solid hsl(var(--border) / .72);
-  }
-  .row:first-child { border-top: 1px solid hsl(var(--border) / .72); }
-  .row-k {
-    font-family: "Courier New", Courier, monospace;
-    font-size: .56rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
-  }
-  .row-v { max-width: 62%; text-align: right; font-size: .82rem; }
-  .row-v.banned { color: hsl(var(--destructive)); }
-  .row-v.active { color: hsl(var(--success)); }
-
-  .hint {
-    margin-top: 1.15rem; text-align: center;
-    font-family: Georgia, "Times New Roman", serif; font-size: .78rem; line-height: 1.6;
-    color: hsl(var(--muted-foreground));
-  }
-  .error {
-    margin-top: .8rem; padding: .55rem .7rem;
-    border: 1px solid hsl(var(--destructive) / .35); background: hsl(var(--destructive) / .08);
-    color: hsl(var(--destructive));
-    font-family: "Courier New", Courier, monospace; font-size: .58rem; letter-spacing: .08em; text-transform: uppercase;
-    text-align: center;
-  }
-  .hidden { display: none !important; }
-
-  footer {
-    position: relative; padding: 1.75rem 1rem; text-align: center;
-    border-top: 1px solid hsl(var(--border));
-    font-family: "Courier New", Courier, monospace;
-    font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
-  }
-  footer a { color: inherit; text-decoration: none; }
-  footer a:hover { color: hsl(var(--foreground)); }
-  footer .sep { opacity: .4; margin: 0 .55rem; }
-  </style>
-  <meta name="page-token" content="ed9139e04050c526fbfd89c32e59a286a40473661038d72897916f595b635ff4">
+        footer strong {
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="/">
-    <img class="mark" src="images/orlyne-bot.jpg" alt="Orlyne Bot" />
-    <span>
-      <span class="brand-name">Orlyne Check Ban</span>
-      <span class="brand-sub" style="display:block;">Free Check</span>
-    </span>
-  </a>
-  <a class="link" href="/panel">Panel</a>
-</header>
+    <header>
+        <div>
+            <div class="brand-title">ORLYNE CHECK BAN</div>
+            <div class="brand-sub">FREE CHECK</div>
+        </div>
+    </header>
 
-<div class="page">
-  <div class="hero">
-    <img class="mark mark-lg" src="images/orlyne-bot.jpg" alt="Orlyne Bot" />
-    <span class="eyebrow">Free forever</span>
-    <h1>Free Ban Check</h1>
-    <p>Check any WhatsApp number in seconds. Status, the time it was checked, and the ban reason — nothing else.</p>
-  </div>
+    <main>
+        <div class="profile-container">
+            <img src="https://i.ibb.co/Lhbv0P8P/Screenshot-20260906-141241.png" alt="Orlyne Bot Logo">
+        </div>
 
-  <div class="card" id="step-input">
-    <div class="card-title">Check number</div>
-    <label class="label" for="phone-input">Phone number</label>
-    <input type="tel" id="phone-input" class="phone-input" placeholder="+49123456789 or 0151..." />
-    <div class="turnstile-wrap" id="ts-wrap">
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAADnq7lsJ0xLVIRQ9" data-theme="dark"></div>
-    </div>
-    <button id="check-btn" class="btn btn-mt">Check ban status</button>
-    <div id="check-error" class="error hidden"></div>
-  </div>
+        <p class="motto">"Work hard, never give up and pray. One day, it will pay off."</p>
 
-  <div class="card hidden" id="step-result">
-    <div class="card-title">Result</div>
-    <div id="result-banner"></div>
-    <div class="rows">
-      <div class="row">
-        <span class="row-k">Status</span>
-        <span class="row-v" id="r-status">—</span>
-      </div>
-      <div class="row">
-        <span class="row-k">Reason</span>
-        <span class="row-v" id="r-reason">—</span>
-      </div>
-      <div class="row">
-        <span class="row-k">Ban time</span>
-        <span class="row-v" id="r-bantime">—</span>
-      </div>
-      <div class="row">
-        <span class="row-k">Appeal time</span>
-        <span class="row-v" id="r-appealtime">—</span>
-      </div>
-    </div>
-    <div class="hint">100% free, forever. No signup required.</div>
-    <button id="again-btn" class="btn btn-mt">Check another number</button>
-  </div>
-</div>
+        <div class="wa-btn-container">
+            <a href="https://whatsapp.com/channel/0029VbAwnNUBvvslMVmnNU1C" target="_blank" class="wa-btn">
+                📢 Rejoindre notre Chaîne WhatsApp
+            </a>
+        </div>
 
-<footer>
-  DEV by ᴘʀɪᴍᴇ ᴋᴏʙᴀ ʟᴀ ᴅ ᴀɴᴅ ♛ ī ᴢ ā ɴ ā ♛
-  <span class="sep">·</span>
-  <a href="https://t.me/wegschleifen" target="_blank" rel="noreferrer">Telegram</a>
-</footer>
-<script>
-  if (['localhost', '127.0.0.1'].includes(location.hostname)) {
-    document.querySelectorAll('.cf-turnstile, #ts-wrap').forEach(el => el.remove());
-  }
-</script>
-<script>if (!['localhost','127.0.0.1'].includes(location.hostname)) { document.write('<scr'+'ipt src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer><\/scr'+'ipt>'); }</script>
+        <div class="card">
+            <form id="checkForm">
+                <div class="input-group">
+                    <label for="phone">NUMÉRO DE TÉLÉPHONE (AVEC INDICATIF)</label>
+                    <input type="tel" id="phone" placeholder="+2250700000000" required>
+                </div>
+                <button type="submit" class="submit-btn" id="btnText">VÉRIFIER LE STATUT</button>
+            </form>
 
-<script>
-(function () {
-  const $ = (id) => document.getElementById(id);
-  const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
+            <div id="result"></div>
+        </div>
+    </main>
 
-  function normalize(num) {
-    if (!num) return null;
-    num = num.trim().replace(/[^\d+]/g, '').replace(/\+/g, '');
-    if (!num) return null;
-    if (num.startsWith('0')) num = '49' + num.slice(1);
-    return '+' + num;
-  }
-  function isValid(num) {
-    const n = normalize(num);
-    return !!n && /^\+\d{7,}$/.test(n);
-  }
-  function showError(msg) {
-    const el = $('check-error');
-    el.textContent = msg;
-    el.classList.remove('hidden');
-  }
-  function clearError() { $('check-error').classList.add('hidden'); }
+    <footer>
+        DEV BY <strong>PRIME KOBA LA D AND IZANA</strong>
+    </footer>
 
-  async function getToken() {
-    let tk = document.querySelector('meta[name="page-token"]')?.content || '';
-    if (!tk) {
-      try { tk = (await fetch('/api/get-token').then(r => r.json())).token || ''; } catch {}
-    }
-    return tk;
-  }
+    <script>
+        document.getElementById('checkForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const phone = document.getElementById('phone').value.trim();
+            const resultDiv = document.getElementById('result');
+            const btnText = document.getElementById('btnText');
 
-  function fmtTs(unix) { return unix ? new Date(unix * 1000).toLocaleString() : '—'; }
+            if (!phone) return;
 
-  function render(number, d) {
-    const banned = !!d.banned;
-    const modBan = !!d.mod_ban;
-    const reason = d.violation_label || d.violation_reason || d.reason || '';
+            btnText.innerText = "VÉRIFICATION EN COURS...";
+            resultDiv.style.display = "none";
 
-    const svg = (paths) =>
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + paths + '</svg>';
-    const ICON_BAN = svg('<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>');
-    const ICON_OK = svg('<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>');
+            try {
+                const response = await fetch('/check-numberr2', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ number: phone })
+                });
 
-    const banner = $('result-banner');
-    if (banned || modBan) {
-      banner.className = 'status-banner banned';
-      banner.innerHTML =
-        '<div class="s-icon banned">' + ICON_BAN + '</div>' +
-        '<div><div class="s-title">' + number + '</div>' +
-        '<div class="s-sub">This number is banned from WhatsApp.</div></div>';
-    } else {
-      banner.className = 'status-banner active';
-      banner.innerHTML =
-        '<div class="s-icon active">' + ICON_OK + '</div>' +
-        '<div><div class="s-title">' + number + '</div>' +
-        '<div class="s-sub">This number is not banned.</div></div>';
-    }
+                const data = await response.json();
 
-    const st = $('r-status');
-    st.textContent = (banned || modBan) ? 'Banned' : 'Not banned';
-    st.className = 'row-v ' + ((banned || modBan) ? 'banned' : 'active');
-    $('r-reason').textContent = (banned || modBan) ? (reason || 'Not specified') : '—';
-    $('r-bantime').textContent = '—';
-    $('r-appealtime').textContent = '—';
-
-    $('step-input').classList.add('hidden');
-    $('step-result').classList.remove('hidden');
-
-    if (banned || modBan) fetchTimes(number);
-  }
-
-  async function fetchTimes(number) {
-    $('r-bantime').innerHTML = '<span class="spin"></span>';
-    $('r-appealtime').innerHTML = '<span class="spin"></span>';
-    try {
-      const tk = await getToken();
-      const res = await fetch('/api/appeal/status', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Page-Token': tk },
-        body: JSON.stringify({ phone: number }),
-      });
-      const d = await res.json().catch(() => ({}));
-      if (!res.ok) { $('r-bantime').textContent = '—'; $('r-appealtime').textContent = '—'; return; }
-      $('r-bantime').textContent = fmtTs(d.ban_time);
-      $('r-appealtime').textContent = fmtTs(d.appeal_creation_time);
-    } catch {
-      $('r-bantime').textContent = '—';
-      $('r-appealtime').textContent = '—';
-    }
-  }
-
-  async function check() {
-    clearError();
-    let number = $('phone-input').value.trim();
-    if (!number) { showError('Please enter a phone number.'); return; }
-    if (!isValid(number)) { showError('Please enter a valid number, e.g. +49123456789 or 0123456789.'); return; }
-    number = normalize(number);
-
-    const ct = isLocal ? '' : (document.querySelector('input[name="cf-turnstile-response"]')?.value || '');
-    if (!isLocal && !ct) { showError('Please complete the captcha first.'); return; }
-
-    const btn = $('check-btn');
-    const original = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spin"></span> Checking...';
-
-    try {
-      const tk = await getToken();
-      const res = await fetch('/check-numberr2', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache',
-          'X-Page-Token': tk,
-        },
-        body: JSON.stringify({ number: number, 'cf-turnstile-response': ct }),
-      });
-      const text = await res.text();
-      let d;
-      try { d = JSON.parse(text); } catch { showError('Server error ' + res.status); return; }
-      if (!res.ok) { showError(d?.error || ('Error ' + res.status)); return; }
-      render(number, d);
-    } catch (err) {
-      showError('Network error: ' + err.message);
-    } finally {
-      btn.disabled = false;
-      btn.innerHTML = original;
-      if (window.turnstile) window.turnstile.reset();
-    }
-  }
-
-  $('check-btn').addEventListener('click', check);
-  $('phone-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); });
-  $('again-btn').addEventListener('click', () => {
-    $('step-result').classList.add('hidden');
-    $('step-input').classList.remove('hidden');
-    $('phone-input').value = '';
-    $('phone-input').focus();
-  });
-})();
-</script>
-
+                resultDiv.style.display = "block";
+                if (data.banned) {
+                    resultDiv.className = "status-banned";
+                    resultDiv.innerHTML = "<strong>Statut : BANNI ❌</strong><br>Ce numéro présente une restriction sur WhatsApp.";
+                } else {
+                    resultDiv.className = "status-clean";
+                    resultDiv.innerHTML = "<strong>Statut : NON BANNI ✅</strong><br>Ce numéro est valide et en bon état.";
+                }
+            } catch (error) {
+                resultDiv.style.display = "block";
+                resultDiv.className = "status-banned";
+                resultDiv.innerHTML = "<strong>Erreur ⚠️</strong><br>Impossible d'effectuer la vérification pour le moment.";
+            } finally {
+                btnText.innerText = "VÉRIFIER LE STATUT";
+            }
+        });
+    </script>
 </body>
 </html>
 
