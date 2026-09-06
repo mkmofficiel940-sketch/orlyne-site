@@ -4,172 +4,184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORLYNE CHECK BAN</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #080808;
-            --card-bg: #121212;
-            --accent-red: #d32f2f;
-            --accent-glow: rgba(211, 47, 47, 0.4);
-            --text-main: #f5f5f5;
-            --text-sub: #a0a0a0;
-            --whatsapp-green: #25D366;
+            --bg: #090a0f;
+            --card-bg: rgba(18, 22, 31, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-red: #ff3b5c;
+            --accent-red-glow: rgba(255, 59, 92, 0.25);
+            --accent-green: #10b981;
+            --accent-green-glow: rgba(16, 185, 129, 0.25);
+            --wa-color: #25d366;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 20% 20%, rgba(255, 59, 92, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(37, 211, 102, 0.05) 0px, transparent 50%);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 24px 16px;
         }
 
         header {
             width: 100%;
-            max-width: 600px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 440px;
+            text-align: center;
             padding: 10px 0;
-            border-bottom: 1px solid #222;
         }
 
         .brand-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
             letter-spacing: 2px;
-            color: #fff;
+            background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .brand-sub {
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             color: var(--accent-red);
-            letter-spacing: 1px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
         }
 
         main {
             width: 100%;
-            max-width: 450px;
+            max-width: 440px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            margin: 20px 0;
         }
 
-        .profile-container {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 2px solid var(--accent-red);
-            box-shadow: 0 0 20px var(--accent-glow);
-            overflow: hidden;
-            margin-bottom: 20px;
+        .avatar-box {
+            position: relative;
+            width: 105px;
+            height: 105px;
+            margin-bottom: 16px;
         }
 
-        .profile-container img {
+        .avatar-box img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 25px var(--accent-red-glow);
         }
 
         .motto {
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-        .wa-btn-container {
-            width: 100%;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            text-align: center;
             margin-bottom: 20px;
+            font-style: italic;
+            max-width: 90%;
         }
-
-        .wa-btn {
-            display: inline-flex;
+        .wa-channel-btn {
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             width: 100%;
-            padding: 12px;
-            background-color: transparent;
-            border: 1px solid var(--whatsapp-green);
-            color: var(--whatsapp-green);
+            padding: 13px;
+            background: rgba(37, 211, 102, 0.08);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            color: var(--wa-color);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 14px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            margin-bottom: 18px;
         }
 
-        .wa-btn:hover {
-            background-color: var(--whatsapp-green);
+        .wa-channel-btn:hover {
+            background: var(--wa-color);
             color: #000;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+            transform: translateY(-1px);
         }
 
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 24px;
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-align: left;
         }
 
         label {
             display: block;
-            font-size: 0.8rem;
-            color: var(--text-sub);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
             margin-bottom: 8px;
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
         }
 
         input[type="tel"] {
             width: 100%;
-            padding: 14px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 8px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.98rem;
             outline: none;
-            transition: border-color 0.3s;
+            transition: all 0.3s ease;
         }
 
         input[type="tel"]:focus {
             border-color: var(--accent-red);
+            box-shadow: 0 0 15px var(--accent-red-glow);
+            background: rgba(255, 255, 255, 0.07);
         }
 
         .submit-btn {
             width: 100%;
             padding: 14px;
-            background-color: var(--accent-red);
+            background: linear-gradient(135deg, #ff3b5c 0%, #d32f2f 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px var(--accent-red-glow);
         }
 
         .submit-btn:hover {
-            background-color: #b71c1c;
+            opacity: 0.95;
+            transform: translateY(-1px);
         }
 
         .submit-btn:active {
@@ -177,64 +189,75 @@
         }
 
         #result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 0.9rem;
             display: none;
+            text-align: left;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .status-clean {
-            background-color: rgba(76, 175, 80, 0.1);
-            border: 1px solid #4caf50;
-            color: #4caf50;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
         }
 
         .status-banned {
-            background-color: rgba(211, 47, 47, 0.1);
-            border: 1px solid var(--accent-red);
+            background: rgba(255, 59, 92, 0.1);
+            border: 1px solid rgba(255, 59, 92, 0.3);
             color: var(--accent-red);
         }
 
+        .result-detail {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 8px;
+        }
+
         footer {
-            margin-top: 30px;
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            letter-spacing: 1px;
+            margin-top: 24px;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.8px;
             text-align: center;
         }
 
         footer strong {
-            color: #fff;
+            color: var(--text-primary);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div>
-            <div class="brand-title">ORLYNE CHECK BAN</div>
-            <div class="brand-sub">FREE CHECK</div>
-        </div>
+        <div class="brand-title">ORLYNE CHECK BAN</div>
+        <div class="brand-sub">FREE CHECK SYSTEM</div>
     </header>
 
     <main>
-        <div class="profile-container">
-            <img src="https://i.ibb.co/Lhbv0P8P/Screenshot-20260906-141241.png" alt="Orlyne Bot Logo">
+        <div class="avatar-box">
+            <img src="https://files.catbox.moe/8b04u8.png" alt="Orlyne Bot Logo">
         </div>
 
         <p class="motto">"Work hard, never give up and pray. One day, it will pay off."</p>
 
-        <div class="wa-btn-container">
-            <a href="https://whatsapp.com/channel/0029VbAwnNUBvvslMVmnNU1C" target="_blank" class="wa-btn">
-                📢 Rejoindre notre Chaîne WhatsApp
-            </a>
-        </div>
+        <a href="https://whatsapp.com/channel/0029VbAwnNUBvvslMVmnNU1C" target="_blank" class="wa-channel-btn">
+            📢 Rejoindre notre Chaîne WhatsApp
+        </a>
 
         <div class="card">
             <form id="checkForm">
                 <div class="input-group">
-                    <label for="phone">NUMÉRO DE TÉLÉPHONE (AVEC INDICATIF)</label>
+                    <label for="phone">Numéro de téléphone (avec indicatif)</label>
                     <input type="tel" id="phone" placeholder="+2250700000000" required>
                 </div>
                 <button type="submit" class="submit-btn" id="btnText">VÉRIFIER LE STATUT</button>
@@ -259,6 +282,7 @@
             if (!phone) return;
 
             btnText.innerText = "VÉRIFICATION EN COURS...";
+            btnText.style.opacity = "0.7";
             resultDiv.style.display = "none";
 
             try {
@@ -269,14 +293,33 @@
                 });
 
                 const data = await response.json();
+                const now = new Date().toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
 
                 resultDiv.style.display = "block";
+                
                 if (data.banned) {
                     resultDiv.className = "status-banned";
-                    resultDiv.innerHTML = "<strong>Statut : BANNI ❌</strong><br>Ce numéro présente une restriction sur WhatsApp.";
+                    
+                    // Récupère la date envoyée par l'API (sinon affiche une mention propre)
+                    const banDate = data.bannedDate || data.banTime || data.date || "Information non fournie par le serveur";
+
+                    resultDiv.innerHTML = `
+                        <strong>Statut :THIS NUMBER CANNOT USE WHATSAPP  ❌</strong><br>
+                        <span>Ce numéro est ban.</span>
+                        <div class="result-detail">
+                            📍 <strong>Date/Heure du ban :</strong> ${banDate}<br>
+                            🕒 <strong>Vérifié le :</strong> ${now}
+                        </div>
+                    `;
                 } else {
                     resultDiv.className = "status-clean";
-                    resultDiv.innerHTML = "<strong>Statut : NON BANNI ✅</strong><br>Ce numéro est valide et en bon état.";
+                    resultDiv.innerHTML = `
+                        <strong>Statut : THIS NUMBER IS AVAIBLE ON WHATSSAP ✅</strong><br>
+                        <span>Ce numéro est toujours vivant.</span>
+                        <div class="result-detail">
+                            🕒 <strong>Vérifié le :</strong> ${now}
+                        </div>
+                    `;
                 }
             } catch (error) {
                 resultDiv.style.display = "block";
@@ -284,6 +327,7 @@
                 resultDiv.innerHTML = "<strong>Erreur ⚠️</strong><br>Impossible d'effectuer la vérification pour le moment.";
             } finally {
                 btnText.innerText = "VÉRIFIER LE STATUT";
+                btnText.style.opacity = "1";
             }
         });
     </script>
