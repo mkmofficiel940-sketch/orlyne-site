@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORLYNE - CHECK BAN</title>
+    <title>ORLYNE CHECK BAN</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -66,7 +66,6 @@
             color: #a0a0ab;
             margin-bottom: 22px;
         }
-
         .channel-box {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -194,10 +193,10 @@
 
     <div class="main-card">
         <div class="logo-container">
-            <img src="https://files.catbox.moe/8b04u8.png" alt="Orlyne Bot Logo" onerror="this.src='https://i.ibb.co/6803Y30/orlyne.png'">
+            <img src="https://files.catbox.moe/8b04u8.png" alt="Orlyne Bot Logo" onerror="this.src='https://ui-avatars.com/api/?name=Orlyne+Bot&background=ff3b5c&color=fff&size=200'">
         </div>
 
-        <h1 class="title">ORLYNE-CHECK-BAN</h1>
+        <h1 class="title">ORLYNE BOT</h1>
         <p class="subtitle">Vérifie le statut de n'importe quel numéro WhatsApp</p>
 
         <div class="channel-box">
@@ -207,7 +206,7 @@
         <form id="checkForm">
             <div class="input-group">
                 <label for="phone">Numéro WhatsApp</label>
-                <input type="tel" id="phone" placeholder="+22770000000" required>
+                <input type="tel" id="phone" value="+227" required>
             </div>
             <p class="input-hint">Inclus l'indicatif pays (ex: +227 pour le Niger)</p>
 
@@ -249,13 +248,20 @@
 
                 resultDiv.style.display = "block";
                 
-                if (data.banned) {
+                // Détection large et intelligente du ban peu importe le format JSON du serveur
+                const isBanned = data.banned === true || 
+                                 data.isBanned === true || 
+                                 data.status === 'banned' || 
+                                 data.error === true ||
+                                 (typeof data.message === 'string' && data.message.toLowerCase().includes('ban'));
+
+                if (isBanned) {
                     resultDiv.className = "status-banned";
-                    const banDate = data.bannedDate || data.banTime || data.date || "Information non transmise par WhatsApp";
+                    const banDate = data.bannedDate || data.banTime || data.date || "Restriction détectée par le serveur";
 
                     resultDiv.innerHTML = `
-                        <strong>Statut : THIS NUMBER CANNOT LONGER USE WHATSAPP ❌</strong><br>
-                        <span>Ce numéro ne peut plus utuliser whatsapp.</span>
+                        <strong>Statut : BANNI ❌</strong><br>
+                        <span>Ce numéro présente une restriction active sur WhatsApp.</span>
                         <div class="result-detail">
                             📍 <strong>Date du ban :</strong> ${banDate}<br>
                             🕒 <strong>Vérifié le :</strong> ${now}
@@ -264,8 +270,8 @@
                 } else {
                     resultDiv.className = "status-clean";
                     resultDiv.innerHTML = `
-                        <strong>Statut : THIS NUMBER IS AVAILAIBLE ON WHATSAPP ✅</strong><br>
-                        <span>Ce numéro est toujours vivant.</span>
+                        <strong>Statut : ACTIF / NON BANNI ✅</strong><br>
+                        <span>Ce numéro est valide et en bon état sur WhatsApp.</span>
                         <div class="result-detail">
                             🕒 <strong>Vérifié le :</strong> ${now}
                         </div>
